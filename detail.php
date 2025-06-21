@@ -1,0 +1,32 @@
+<?php
+require 'db.php';
+$id = $_GET['id'];
+
+$leerling = $conn->prepare("SELECT * FROM leerling WHERE id = ?");
+$leerling->execute([$id]);
+$data = $leerling->fetch();
+
+echo "<h2>{$data['naam']} ({$data['klas']})</h2>";
+
+$toetsen = $conn->prepare("SELECT * FROM toets WHERE leerling_id = ?");
+$toetsen->execute([$id]);
+
+$totaal = 0; $aantal = 0;
+echo "<table border='1'><tr><th>Vak</th><th>Cijfer</th></tr>";
+foreach ($toetsen as $toets) {
+    echo "<tr><td>{$toets['vak']}</td><td>{$toets['cijfer']}</td></tr>";
+    $totaal += $toets['cijfer'];
+    $aantal++;
+}
+$gemiddelde = $aantal ? round($totaal / $aantal, 2) : "N.v.t.";
+echo "</table><p><strong>Gemiddeld cijfer:</strong> $gemiddelde</p>";
+?>
+
+<h3>Toets toevoegen</h3>
+<form method="post" action="voeg_toets_toe.php">
+    <input type="hidden" name="leerling_id" value="<?= $id ?>">
+    Vak: <input type="text" name="vak" required><br>
+    Cijfer: <input type="number" step="0.1" name="cijfer" required><br>
+    <input type="submit" value="Opslaan">
+</form>
+<br><a href="overzicht.php">← Terug</a>

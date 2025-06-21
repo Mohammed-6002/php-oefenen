@@ -1,0 +1,16 @@
+CREATE DATABASE IF NOT EXISTS winkel;
+USE winkel;
+
+CREATE TABLE leerling (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    naam VARCHAR(100) NOT NULL,
+    klas VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE toets (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    leerling_id INT NOT NULL,
+    vak VARCHAR(100) NOT NULL,
+    cijfer DECIMAL(4,2) NOT NULL,
+    FOREIGN KEY (leerling_id) REFERENCES leerling(id) ON DELETE CASCADE
+);
