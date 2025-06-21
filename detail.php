@@ -24,7 +24,7 @@ echo "</table><p><strong>Gemiddeld cijfer:</strong> $gemiddelde</p>";
 ?>
 
 <h3>Toets toevoegen</h3>
-<form method="post" action="voeg_toets_toe.php">
+<form method="post" action="insert.php">
     <input type="hidden" name="leerling_id" value="<?= $id ?>">
     Vak: <input type="text" name="vak" required><br>
     Cijfer: <input type="number" step="0.1" name="cijfer" required><br>
