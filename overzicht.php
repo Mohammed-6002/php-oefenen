@@ -1,15 +1,16 @@
 <?php
-// Include database connection
 require 'db.php';
 
-// Fetch all students from the database
+// AANTAL LEERLINGEN TONEN (nieuw toegevoegd)
+$aantal_leerlingen = $conn->query("SELECT COUNT(*) FROM leerling")->fetchColumn();
+echo "<h2>Leerlingen ($aantal_leerlingen)</h2>";  // Toont het aantal boven de tabel
+
 $stmt = $conn->query("SELECT * FROM leerling");
 
-// Display students in a table
-echo "<h2>Leerlingen</h2><table border='1'>";
+// Bestaande code blijft hetzelfde
+echo "<table border='1'>";
 echo "<tr><th>Naam</th><th>Klas</th><th>Detail</th><th>Wijzig</th><th>Verwijder</th></tr>";
 
-// Loop through each student and display their data with action links
 foreach ($stmt as $row) {
     echo "<tr>
         <td>{$row['naam']}</td>
@@ -21,3 +22,4 @@ foreach ($stmt as $row) {
 }
 
 echo "</table><br><a href='index.php'>← Terug</a>";
+?>
