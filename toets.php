@@ -19,13 +19,13 @@ echo "<h2>Toets cijfer wijzigen is niet toegestaan.</h2>";
 // The form below will be disabled for input
 ?>
 
-<h2>Toets cijfer wijzigen</h2>
+<h2>Toets</h2>
 <form method="post">
     Vak: <?= htmlspecialchars($toets['vak']) ?><br>
     Cijfer: <input type="number" step="0.1" name="cijfer" value="<?= htmlspecialchars(number_format((float)$toets['cijfer'], 1)) ?>" readonly><br>
     <input type="submit" value="Opslaan" disabled>
 </form>
-<a href="detail.php?id=<?= $toets['leerling_id'] ?>">← Terug</a>
+<a href="detail.php?id=<?= $toets['leerling_id'] ?>"><- Terug</a>
 
 <!--
 Include the database connection to perform queries
