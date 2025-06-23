@@ -39,7 +39,7 @@ $insert_toets->execute([$leerling_id, $vak, $cijfer]);
 
 header("Location: overzicht.php");
 exit;
-?>
+
 
 /*
 Include the database connection to perform queries

@@ -5,7 +5,7 @@ try {
 } catch (PDOException $e) {
     die("Verbinding mislukt: " . $e->getMessage());
 }
-?>
+
 
 /*
 Establish a connection to the MySQL database using PDO
