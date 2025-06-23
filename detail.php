@@ -18,12 +18,12 @@ $aantal = 0;
 echo "<table border='1'><tr><th>Vak</th><th>Cijfer</th></tr>";
 
 foreach ($toetsen as $toets) {
-    $rounded_grade = round($toets['cijfer'], 1);
-    echo "<tr><td>{$toets['vak']}</td><td>{$rounded_grade}</td></tr>";
+    $formatted_grade = number_format($toets['cijfer'], 1, ',', '.');
+    echo "<tr><td>{$toets['vak']}</td><td>{$formatted_grade}</td></tr>";
     $totaal += $toets['cijfer'];
     $aantal++;
 }
-$gemiddelde = $aantal ? round($totaal / $aantal, 1) : "N.v.t.";
+$gemiddelde = $aantal ? number_format($totaal / $aantal, 1, ',', '.') : "N.v.t.";
 echo "</table><p><strong>Gemiddeld cijfer:</strong> $gemiddelde</p>";
 ?>
 

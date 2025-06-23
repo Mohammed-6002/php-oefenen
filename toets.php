@@ -13,10 +13,6 @@ $toets = $stmt->fetch();
 if (!$toets) {
     die("Toets niet gevonden.");
 }
-
-echo "<h2>Toets cijfer wijzigen is niet toegestaan.</h2>";
-// Disable editing by not processing POST requests or updating the grade
-// The form below will be disabled for input
 ?>
 
 <h2>Toets</h2>
