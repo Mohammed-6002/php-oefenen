@@ -18,7 +18,8 @@ $toetsen = $conn->prepare("SELECT * FROM toets WHERE leerling_id = ?");
 $toetsen->execute([$id]);
 
 // Initialize variables to calculate the average score
-$totaal = 0; $aantal = 0;
+$totaal = 0; 
+$aantal = 0;
 
 // Start the HTML table to display test scores
 echo "<table border='1'><tr><th>Vak</th><th>Cijfer</th></tr>";
@@ -26,7 +27,7 @@ echo "<table border='1'><tr><th>Vak</th><th>Cijfer</th></tr>";
 // Loop through each test score and display it with an edit link
 foreach ($toetsen as $toets) {
     $rounded_grade = round($toets['cijfer'], 1);
-    echo "<tr><td>{$toets['vak']}</td><td>{$rounded_grade} <a href='edit_toets.php?id={$toets['id']}'>Wijzig</a></td></tr>";
+    echo "<tr><td>{$toets['vak']}</td><td>{$rounded_grade}</td></tr>";
     // Add the score to the total and increment the count
     $totaal += $toets['cijfer'];
     $aantal++;

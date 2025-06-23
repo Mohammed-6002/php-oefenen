@@ -14,24 +14,16 @@ if (!$toets) {
     die("Toets niet gevonden.");
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $cijfer = $_POST['cijfer'] ?? null;
-    if ($cijfer === null || $cijfer === '') {
-        echo "Cijfer is verplicht.";
-    } else {
-        $update = $conn->prepare("UPDATE toets SET cijfer = ? WHERE id = ?");
-        $update->execute([$cijfer, $id]);
-        header("Location: detail.php?id=" . $toets['leerling_id']);
-        exit;
-    }
-}
+echo "<h2>Toets cijfer wijzigen is niet toegestaan.</h2>";
+// Disable editing by not processing POST requests or updating the grade
+// The form below will be disabled for input
 ?>
 
 <h2>Toets cijfer wijzigen</h2>
 <form method="post">
     Vak: <?= htmlspecialchars($toets['vak']) ?><br>
-    Cijfer: <input type="number" step="0.1" name="cijfer" value="<?= htmlspecialchars(number_format((float)$toets['cijfer'], 1)) ?>" required><br>
-    <input type="submit" value="Opslaan">
+    Cijfer: <input type="number" step="0.1" name="cijfer" value="<?= htmlspecialchars(number_format((float)$toets['cijfer'], 1)) ?>" readonly><br>
+    <input type="submit" value="Opslaan" disabled>
 </form>
 <a href="detail.php?id=<?= $toets['leerling_id'] ?>">← Terug</a>
 
